@@ -16,14 +16,16 @@ class MessageHandler {
       if (state?.step === 'menu_modality') {
         await OptionSelectedModality.optionSelected(
           message.from,
-          message.text.body.toLowerCase().trim() //incomingMessage
+          message.text.body.toLowerCase().trim(), //incomingMessage
+          message.id
         )
         return
       }
       if (state?.step === 'menu_programs_in_office') {
         await courseMenuSelection.sendCourseMenuSelectionInOffice(
           message.from,
-          message.text.body.toLowerCase().trim() //incomingMessage
+          message.text.body.toLowerCase().trim(), //incomingMessage
+          message.id
         )
         return
       }
