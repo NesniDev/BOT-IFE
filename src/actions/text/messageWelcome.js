@@ -1,4 +1,5 @@
 import whatsappServices from '#services/whatsappServices.js'
+import stateService from '#handleBotState/index.js'
 
 class MessageWelcome {
   isGreeting(message) {
@@ -32,6 +33,10 @@ class MessageWelcome {
     const response = `¿En qué modalidad deseas estudiar?\n1. Modalidad Presencial\n2. Modalidad Virtual`
 
     await whatsappServices.sendMessage(to, response)
+
+    stateService.setState(to, {
+      step: 'menu_modality'
+    })
   }
 }
 
