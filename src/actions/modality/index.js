@@ -1,6 +1,7 @@
 import whatsappService from '#services/whatsappServices.js'
 import CoursesListInOffice from './in-office/index.js'
 import CoursesListRemote from './remote/index.js'
+import stateService from '#handleBotState/index.js'
 class OptionSelectedModality {
   async optionSelected(to, option) {
     let response
@@ -17,6 +18,7 @@ class OptionSelectedModality {
           to,
           'Saluda a nuestro bot de whatsapp, no has elegido ninguna opción'
         )
+        stateService.clearState(to)
         break
     }
     await whatsappService.sendMessage(to, response)
