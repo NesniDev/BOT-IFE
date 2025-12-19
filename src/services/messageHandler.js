@@ -4,6 +4,7 @@ import whatsappService from './whatsappServices.js'
 import messageWelcome from '#actions/text/messageWelcome.js'
 import OptionSelectedModality from '#actions/modality/index.js'
 import courseMenuSelection from '#actions/courses/courseMenuSelection.js'
+import BackToMenu from '#actions/backMenu/backToMenu.js'
 
 class MessageHandler {
   constructor() {}
@@ -29,25 +30,36 @@ class MessageHandler {
       if (state?.step === 'course_selected') {
         await whatsappService.sendMessage(
           message.from,
-          'Ya has elegido un curso de la lista'
+          'Ya has elegido un curso de la lista.'
         )
+        await whatsappService.markAsRead(message.id)
+
+        stateService.clearState(message.from)
+        return
       }
 
       if (messageWelcome.isGreeting(incomingMessage)) {
         await messageWelcome.sendWelcomeMessage(message.from)
         await messageWelcome.sendMenuModality(message.from)
         await whatsappService.markAsRead(message.id)
+        return
       }
-      // else {
-      //   await whatsappService.sendMessage(
-      //     message.from,
-      //     'Ups, no logré entenderte, Seleccione la siguiente opción para darte información sobre nuestra institucion '
-      //   )
-      // }
 
-      await whatsappService.markAsRead(message.id)
+      await BackToMenu.sendReturnToMainMenu(message.from)
+
+      // await whatsappService.markAsRead(message.id)
+      return
+    } else if (message?.type === 'interactive') {
+      const buttonId = message.interactive.button_reply?.id
+
+      if (buttonId === 'go_menu') {
+        stateService.clearState(message.from)
+        await messageWelcome.sendWelcomeMessage(message.from)
+        await messageWelcome.sendMenuModality(message.from)
+        await whatsappService.markAsRead(message.id)
+        return
+      }
     }
   }
 }
-
 export default new MessageHandler()
