@@ -3,16 +3,14 @@ import CourseVeterinaria from '#actions/courses/veterinaria/veterinaria.js'
 import stateService from '#handleBotState/index.js'
 
 class CourseMenuSelection {
-  async sendCourseMenuSelectionInOffice(to, optionList) {
+  async sendCourseMenuSelectionInOffice(to, optionList, messageId) {
     let response
 
     switch (optionList) {
       case '1':
         // await CourseVeterinaria.sendImageVeterinaria(to)
         // await CourseVeterinaria.sendAudioIFE(to)
-        response = await CourseVeterinaria.sendImageDocInscripcionVeterinaria(
-          to
-        )
+        await CourseVeterinaria.sendCourseVeterinaria(to)
         stateService.setState(to, {
           step: 'course_selected',
           course: 'veterinaria'
@@ -55,15 +53,15 @@ class CourseMenuSelection {
         response = 'ha elegido desarrollo web y multimedia'
         break
       default:
-        response = await whatsappServices.sendMessage(
+        await whatsappServices.sendMessage(
           to,
           'Salluda a nuestro bot de Whatsapp con un *"Hola"* para que te de información sobre nuestra institucion'
         )
     }
 
     // CourseVeterinaria.wait(60000)
-    await whatsappServices.sendMessage(to, response)
-    await whatsappServices.markAsRead(to)
+    // await whatsappServices.sendMessage(to, response)
+    await whatsappServices.markAsRead(messageId)
   }
 }
 
