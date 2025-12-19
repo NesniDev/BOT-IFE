@@ -17,7 +17,8 @@
     "#routes/*": "./src/routes/*",
     "#controllers/*": "./src/controllers/*",
     "#services/*": "./src/services/*",
-    "#actions/*": "./src/actions/*"
+    "#actions/*": "./src/actions/*",
+    "#handleBotState/*": "./src/handleBotState/*"
   },
   "dependencies": {
     "axios": "^1.13.2",
