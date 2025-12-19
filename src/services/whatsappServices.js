@@ -4,6 +4,10 @@ import config from '#config/env.js'
 class WhatsAppService {
   async sendMessage(to, body) {
     try {
+      if (!body || typeof body !== 'string' || !body.trim()) {
+        console.warn('sendMessage aborted: invalid text', body)
+        return
+      }
       await axios({
         method: 'POST',
         url: `https://graph.facebook.com/${config.API_VERSION}/${config.BUSINESS_PHONE}/messages`,
@@ -20,7 +24,10 @@ class WhatsAppService {
         }
       })
     } catch (error) {
-      console.error('Error sending message:', error)
+      console.error(
+        'WhatsApp Message error:',
+        error.response?.data || error.message
+      )
     }
   }
 
@@ -46,11 +53,6 @@ class WhatsAppService {
             caption: caption
           }
           break
-        case 'file':
-          mediaObject.file = {
-            link: mediaUrl
-          }
-          break
         default:
           throw new Error('Invalid media type')
       }
@@ -68,7 +70,10 @@ class WhatsAppService {
         }
       })
     } catch (error) {
-      console.error('Error sending media message:', error)
+      console.error(
+        'WhatsApp media error:',
+        error.response?.data || error.message
+      )
     }
   }
 
@@ -94,7 +99,10 @@ class WhatsAppService {
         }
       })
     } catch (error) {
-      console.error('Error marking message as read:', error)
+      console.error(
+        'WhatsApp SendButton error:',
+        error.response?.data || error.message
+      )
     }
   }
 
@@ -113,7 +121,10 @@ class WhatsAppService {
         }
       })
     } catch (error) {
-      console.error('Error marking message as read:', error)
+      console.error(
+        'WhatsApp markAsRead error:',
+        error.response?.data || error.message
+      )
     }
   }
 }
