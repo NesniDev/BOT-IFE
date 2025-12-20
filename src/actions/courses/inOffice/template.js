@@ -2,13 +2,14 @@ import whatsappServices from '#services/whatsappServices.js'
 class TemplateCourse {
   async sendCourse(to, course) {
     await this.sendInformation(to, course)
-
+    await this.sendImageInscription(to, course)
     for (const key in course.images) {
       const imageUrl = course.images[key]
       const caption = course.captions[key]
 
       await whatsappServices.sendMediaMessage(to, 'image', imageUrl, caption)
     }
+    await this.sendAudio(to, course)
   }
 
   async sendRegister(to, course) {
@@ -24,6 +25,20 @@ class TemplateCourse {
     ]
 
     await whatsappServices.sendButtonMessage(to, buttons, textButton)
+  }
+
+  async sendImageInscription(to, course) {
+    const imageUrl =
+      'https://drive.google.com/uc?export=download&id=1FSyI_bTwd1xElCFuI0bqdjGNW1EuTdGt'
+    const caption = `Formulario de inscripción del ${course.title.toLowerCase()}`
+
+    await whatsappServices.sendMediaMessage(to, 'image', imageUrl, caption)
+  }
+
+  async sendAudio(to, course) {
+    const audioUrl = course.audio
+
+    await whatsappServices.sendMediaMessage(to, 'audio', audioUrl)
   }
 
   async sendInformation(to, course) {
