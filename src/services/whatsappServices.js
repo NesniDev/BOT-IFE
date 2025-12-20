@@ -106,6 +106,29 @@ class WhatsAppService {
     }
   }
 
+  async sendContacts(to, contact) {
+    try {
+      await axios({
+        method: 'POST',
+        url: `https://graph.facebook.com/${config.API_VERSION}/${config.BUSINESS_PHONE}/messages`,
+        headers: {
+          Authorization: `Bearer ${config.API_TOKEN}`
+        },
+        data: {
+          messaging_product: 'whatsapp',
+          to,
+          type: 'contacts',
+          contacts: [contact]
+        }
+      })
+    } catch (error) {
+      console.error(
+        'WhatsApp SendButton error:',
+        error.response?.data || error.message
+      )
+    }
+  }
+
   async markAsRead(messageId) {
     try {
       await axios({
