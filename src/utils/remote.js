@@ -1,25 +1,5 @@
 const coursesList = {
   1: {
-    title: 'Técnico en Asistente de Veterinaria',
-    images: {
-      image_costs:
-        'https://drive.google.com/uc?export=download&id=10f6hU_iRP4r3FANEFX8xagcLID1_-t5w',
-      image_schedules:
-        'https://drive.google.com/uc?export=download&id=14PPE7DxxsSTTJOch1XvOX4lLr-Aaj8F4'
-    },
-    voucher: {
-      image_voucher:
-        'https://drive.google.com/uc?export=download&id=1hn_QDGI44C3SakNvMhY6iMLAiXqIi9z2',
-      caption_voucher: 'Voucher de inscripción'
-    },
-    captions: {
-      image_costs: 'Costos del técnico de veterinaria',
-      image_schedules: 'Horarios del técnico de Veterinaria'
-    },
-    audio:
-      'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
-  },
-  2: {
     title: 'Técnico en Asistente Administrativo',
     images: {
       image_costs:
@@ -39,27 +19,8 @@ const coursesList = {
     audio:
       'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
   },
-  3: {
-    title: 'Técnico en Sistemas e Informática',
-    images: {
-      image_costs:
-        'https://drive.google.com/uc?export=download&id=1pEQYxjS8yXgGmM__up5CJhb0_Qnp3LiI',
-      image_schedules:
-        'https://drive.google.com/uc?export=download&id=1QleefN30qp70tLVMQXV9SXDSQ32wchC9'
-    },
-    voucher: {
-      image_voucher:
-        'https://drive.google.com/uc?export=download&id=1hn_QDGI44C3SakNvMhY6iMLAiXqIi9z2',
-      caption_voucher: 'Voucher de inscripción'
-    },
-    captions: {
-      image_costs: 'Costos del técnico en sistemas e informática',
-      image_schedules: 'Horarios del técnico en sistemas e informática'
-    },
-    audio:
-      'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
-  },
-  4: {
+
+  2: {
     title: 'Técnico en Seguridad y Salud en el Trabajo',
     images: {
       image_costs:
@@ -79,7 +40,7 @@ const coursesList = {
     audio:
       'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
   },
-  5: {
+  3: {
     title: 'Técnico en Gestión Documental y Archivo',
     images: {
       image_costs:
@@ -99,7 +60,7 @@ const coursesList = {
     audio:
       'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
   },
-  6: {
+  4: {
     title: 'Técnico en Auxiliar Contable y Financiero',
     images: {
       image_costs:
@@ -119,7 +80,7 @@ const coursesList = {
     audio:
       'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
   },
-  7: {
+  5: {
     title: 'Técnico en Auxiliar Judicial y Criminalística',
     images: {
       image_costs:
@@ -140,27 +101,8 @@ const coursesList = {
     audio:
       'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
   },
-  8: {
-    title: 'Técnico en Diseño Gráfico',
-    images: {
-      image_costs:
-        'https://drive.google.com/uc?export=download&id=1Pg_Ef_bUYF3Bj8rVYfUiVOGyqNaf6oLM',
-      image_schedules:
-        'https://drive.google.com/uc?export=download&id=1mqnz18tnBjYhPK0LndPCVtpFescwOK5b'
-    },
-    voucher: {
-      image_voucher:
-        'https://drive.google.com/uc?export=download&id=1hn_QDGI44C3SakNvMhY6iMLAiXqIi9z2',
-      caption_voucher: 'Voucher de inscripción'
-    },
-    captions: {
-      image_costs: 'Costos del técnico en diseño gráfico',
-      image_schedules: 'Horarios del técnico en diseño gráfico'
-    },
-    audio:
-      'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
-  },
-  9: {
+
+  6: {
     title: 'Técnico en Atención a la Primera Infancia',
     images: {
       image_costs:
@@ -180,47 +122,7 @@ const coursesList = {
     audio:
       'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
   },
-  10: {
-    title: 'Técnico en Auxiliar en Preescolar',
-    images: {
-      image_costs:
-        'https://drive.google.com/uc?export=download&id=1DMn2Qui1AMQjjo9qlXBT-lyxYRgVIQ-q',
-      image_schedules:
-        'https://drive.google.com/uc?export=download&id=15wI5jgnrtpvyQpZ2JMTrXyEICMyPvpkj'
-    },
-    voucher: {
-      image_voucher:
-        'https://drive.google.com/uc?export=download&id=1hn_QDGI44C3SakNvMhY6iMLAiXqIi9z2',
-      caption_voucher: 'Voucher de inscripción'
-    },
-    captions: {
-      image_costs: 'Costos del técnico en auxiliar en preescolar',
-      image_schedules: 'Horarios del técnico en auxiliar en preescolar'
-    },
-    audio:
-      'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
-  },
-  11: {
-    title: 'Técnico en Asistente Social y Comunitario',
-    images: {
-      image_costs:
-        'https://drive.google.com/uc?export=download&id=1glZhSp36J7s6XJtB6IKmOnFNtAL1hH8N',
-      image_schedules:
-        'https://drive.google.com/uc?export=download&id=1TN-oiaqOZHXvVuo8GztOCZIav0nA7uLn'
-    },
-    voucher: {
-      image_voucher:
-        'https://drive.google.com/uc?export=download&id=1hn_QDGI44C3SakNvMhY6iMLAiXqIi9z2',
-      caption_voucher: 'Voucher de inscripción'
-    },
-    captions: {
-      image_costs: 'Costos del técnico en asistente social y comunitario',
-      image_schedules: 'Horarios del técnico en asistente social y comunitario'
-    },
-    audio:
-      'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
-  },
-  12: {
+  7: {
     title: 'Técnico en Mercadeo y Ventas',
     images: {
       image_costs:
@@ -236,47 +138,6 @@ const coursesList = {
     captions: {
       image_costs: 'Costos del técnico en mercadeo y ventas',
       image_schedules: 'Horarios del técnico en mercadeo y ventas'
-    },
-    audio:
-      'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
-  },
-
-  13: {
-    title: 'Técnico en Desarrollo Web y Multimedia',
-    images: {
-      image_costs:
-        'https://drive.google.com/uc?export=download&id=1FBDuf1MYXggk3E2Z67fF64F9pln4yCkY',
-      image_schedules:
-        'https://drive.google.com/uc?export=download&id=1USEmQPMjAxPEPkYHG5OyZGb8FEVtqLBr'
-    },
-    voucher: {
-      image_voucher:
-        'https://drive.google.com/uc?export=download&id=1hn_QDGI44C3SakNvMhY6iMLAiXqIi9z2',
-      caption_voucher: 'Voucher de inscripción'
-    },
-    captions: {
-      image_costs: 'Costos del técnico en desarrollo web y multimedia',
-      image_schedules: 'Horarios del técnico en desarrollo web y multimedia'
-    },
-    audio:
-      'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'
-  },
-  14: {
-    title: 'Técnico en Mecánica Automotriz',
-    images: {
-      image_costs:
-        'https://drive.google.com/uc?export=download&id=14R8drRebgXV_sdC5xkqZ2YBDMDDzwj2d',
-      image_schedules:
-        'https://drive.google.com/uc?export=download&id=1ejlomUq_TWYfgiIZG48qJ5nQA2e0ZcQw'
-    },
-    voucher: {
-      image_voucher:
-        'https://drive.google.com/uc?export=download&id=1hn_QDGI44C3SakNvMhY6iMLAiXqIi9z2',
-      caption_voucher: 'Voucher de inscripción'
-    },
-    captions: {
-      image_costs: 'Costos del técnico en mecánica automotriz',
-      image_schedules: 'Horarios del técnico en mecánica automotriz'
     },
     audio:
       'https://drive.google.com/uc?export=download&id=1_E6U_kTp_OqJrBZKBniS4P1Gx2kKGJH7'

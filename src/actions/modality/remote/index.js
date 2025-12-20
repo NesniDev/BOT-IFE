@@ -1,4 +1,5 @@
 import whatsappServices from '#services/whatsappServices.js'
+import stateService from '#handleBotState/index.js'
 
 class CoursesListRemote {
   async sendCoursesListRemote(to) {
@@ -13,6 +14,9 @@ class CoursesListRemote {
         7. Técnico en mercadeo y ventas
         `
     await whatsappServices.sendMessage(to, response)
+    stateService.setState(to, {
+      step: 'menu_programs_remote'
+    })
   }
 }
 

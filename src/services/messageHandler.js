@@ -4,6 +4,7 @@ import whatsappService from './whatsappServices.js'
 import messageWelcome from '#actions/text/messageWelcome.js'
 import OptionSelectedModality from '#actions/modality/index.js'
 import courseMenuSelection from '#actions/courses/courseMenuSelection.js'
+import courseMenuSelectionRemote from '#actions/courses/courseMenuSelectionRemote.js'
 import BackToMenu from '#actions/backMenu/backToMenu.js'
 import PaymentInformation from '#actions/payment/index.js'
 import Contacts from '#actions/contacts/index.js'
@@ -21,10 +22,20 @@ class MessageHandler {
           message.text.body.toLowerCase().trim(), //incomingMessage
           message.id
         )
+        await whatsappService.markAsRead(message.id)
         return
       }
       if (state?.step === 'menu_programs_in_office') {
         await courseMenuSelection.sendCourseMenuSelectionInOffice(
+          message.from,
+          message.text.body.toLowerCase().trim(), //incomingMessage
+          message.id
+        )
+        return
+      }
+
+      if (state?.step === 'menu_programs_remote') {
+        await courseMenuSelectionRemote.sendCourseMenuSelectionRemote(
           message.from,
           message.text.body.toLowerCase().trim(), //incomingMessage
           message.id
