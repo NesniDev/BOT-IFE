@@ -8,12 +8,19 @@ class CourseMenuSelection {
 
     switch (optionList) {
       case '1':
-        // await CourseVeterinaria.sendImageVeterinaria(to)
-        // await CourseVeterinaria.sendAudioIFE(to)
+        const currentState = stateService.getState(to)
+        if (currentState?.course) {
+          await whatsappServices.sendMessage(
+            to,
+            `Ya has seleccionado el curso *${currentState.course}*. Para inscribirte, por favor escribe:\n*Quiero inscribirme*`
+          )
+          break
+        }
+
         await CourseVeterinaria.sendCourseVeterinaria(to)
         stateService.setState(to, {
-          step: 'course_selected',
-          course: 'veterinaria'
+          step: 'waiting_quiero_inscribirme',
+          course: 'Técnico en Asistente de Veterinaria'
         })
         break
       case '2':
@@ -60,7 +67,7 @@ class CourseMenuSelection {
     }
 
     // CourseVeterinaria.wait(60000)
-    // await whatsappServices.sendMessage(to, response)
+    await whatsappServices.sendMessage(to, response)
     await whatsappServices.markAsRead(messageId)
   }
 }
