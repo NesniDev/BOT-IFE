@@ -33,23 +33,39 @@ class MessageHandler {
       }
 
       if (state?.step === 'waiting_quiero_inscribirme') {
-        if (incomingMessage.includes('quiero inscribirme')) {
-          await PaymentInformation.sendPaymentInformation(message.from)
+        if (incomingMessage === 'quiero inscribirme') {
+          await PaymentInformation.sendPaymentInformation(
+            message.from,
+            state.course
+          )
           await Contacts.sendContacts(message.from)
-        } else if (incomingMessage.includes('finalizar chat')) {
-          await whatsappService.sendMessage(
-            message.from,
-            'Gracias por usar nuestro bot de whatsapp. ¡Nos vemos pronto!'
-          )
+
+          stateService.setState(message.from, {
+            step: 'payment_info_sent',
+            course: state.course
+          })
+
           await whatsappService.markAsRead(message.id)
-          stateService.clearState(message.from)
           return
-        } else {
+        }
+
+        if (incomingMessage === 'finalizar chat') {
           await whatsappService.sendMessage(
             message.from,
-            'Para continuar, por favor escribe exactamente:\n*Quiero inscribirme* ó *finalizar chat*'
+            'Gracias por usar nuestro bot de WhatsApp. ¡Te esperamos pronto!'
           )
+
+          stateService.clearState(message.from)
+          await whatsappService.markAsRead(message.id)
+          return
         }
+
+        // Mensaje incorrecto
+        await whatsappService.sendMessage(
+          message.from,
+          'Para continuar, escribe exactamente:\n\n*Quiero inscribirme*\nó\n*Finalizar chat*'
+        )
+
         await whatsappService.markAsRead(message.id)
         return
       }

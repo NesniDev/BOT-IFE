@@ -1,75 +1,25 @@
 import whatsappServices from '#services/whatsappServices.js'
-import CourseVeterinaria from '#actions/courses/veterinaria/veterinaria.js'
+import TemplateCourse from '#actions/courses/inOffice/template.js'
 import stateService from '#handleBotState/index.js'
+import coursesList from '#utils/inOffice.js'
 
 class CourseMenuSelection {
   async sendCourseMenuSelectionInOffice(to, optionList, messageId) {
-    let response
+    const selectedCourse = coursesList[optionList]
 
-    switch (optionList) {
-      case '1':
-        const currentState = stateService.getState(to)
-        if (currentState?.course) {
-          await whatsappServices.sendMessage(
-            to,
-            `Ya has seleccionado el curso *${currentState.course}*. Para inscribirte, por favor escribe:\n*Quiero inscribirme*`
-          )
-          break
-        }
-
-        await CourseVeterinaria.sendCourseVeterinaria(to)
-        stateService.setState(to, {
-          step: 'waiting_quiero_inscribirme',
-          course: 'Técnico en Asistente de Veterinaria'
-        })
-        break
-      case '2':
-        response = 'ha elegido asistente administrativo'
-        break
-      case '3':
-        response = 'ha elegido técnico en sistemas e informática'
-        break
-      case '4':
-        response = 'ha elegido seguridad y salud en el trabajo'
-        break
-      case '5':
-        response = 'ha elegido gestión documental y Archivo'
-        break
-      case '6':
-        response = 'ha elegido auxiliar contable y financiero'
-        break
-      case '7':
-        response = 'ha elegido auxiliar judicial y criminalistica'
-        break
-      case '8':
-        response = 'ha elegido diseño grafico'
-        break
-      case '9':
-        response = 'ha elegido atención a la primera infancia'
-        break
-      case '10':
-        response = 'ha elegido auxiliar en preescolar'
-        break
-      case '11':
-        response = 'ha elegido asistente social y comunitario'
-        break
-      case '12':
-        response = 'ha elegido mercadeo y ventas'
-        break
-      case '13':
-        response = 'ha elegido desarrollo web y multimedia'
-        break
-      default:
-        await whatsappServices.sendMessage(
-          to,
-          'Salluda a nuestro bot de Whatsapp con un *"Hola"* para que te de información sobre nuestra institucion'
-        )
+    if (!selectedCourse) {
+      await whatsappServices.sendMessage(
+        to,
+        'Opción no válida. Selecciona un número del menú.'
+      )
+      return
     }
 
-    // CourseVeterinaria.wait(60000)
-    await whatsappServices.sendMessage(to, response)
-    await whatsappServices.markAsRead(messageId)
+    await TemplateCourse.sendCourse(to, selectedCourse)
+    stateService.setState(to, {
+      step: 'waiting_quiero_inscribirme',
+      course: selectedCourse.title
+    })
   }
 }
-
 export default new CourseMenuSelection()

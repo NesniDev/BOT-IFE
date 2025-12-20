@@ -2,10 +2,10 @@ import whatsappServices from '#services/whatsappServices.js'
 import stateService from '#handleBotState/index.js'
 
 class PaymentInformation {
-  async sendPaymentInformation(to) {
+  async sendPaymentInformation(to, course) {
     try {
-      const response = `Me agrada que te interese el curso de técnico en asistente de veterinaria. 
-      
+      const response = `Me agrada que te interese el curso de ${course}. 
+
 Si quieres contacto con un asesor, por favor envía un mensaje al siguiente enlace:  wa.link/cv1xp7`
 
       await whatsappServices.sendMessage(to, response)
