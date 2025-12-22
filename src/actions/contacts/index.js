@@ -5,7 +5,7 @@ class Contacts {
     const contacts = {
       addresses: [
         {
-          street: 'Avenida Julio Salazar',
+          street: 'Cra. 7 # 14B-25',
           city: 'Chiquinquirá',
           state: 'Boyacá',
           zip: '',

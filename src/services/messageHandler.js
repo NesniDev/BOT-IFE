@@ -81,28 +81,6 @@ class MessageHandler {
         return
       }
 
-      if (state?.step === 'payment_info') {
-        await whatsappService.sendMessage(
-          message.from,
-          'Recibimos tu interés. En breve nos pondremos en contacto para completar la inscripción.'
-        )
-
-        await whatsappService.markAsRead(message.id)
-        stateService.clearState(message.from)
-        return
-      }
-
-      if (state?.step === 'course_selected') {
-        await whatsappService.sendMessage(
-          message.from,
-          'Ya has elegido un curso de la lista.'
-        )
-        await whatsappService.markAsRead(message.id)
-
-        stateService.clearState(message.from)
-        return
-      }
-
       if (messageWelcome.isGreeting(incomingMessage)) {
         await messageWelcome.sendWelcomeMessage(message.from)
         await messageWelcome.sendMenuModality(message.from)
@@ -110,8 +88,20 @@ class MessageHandler {
         return
       }
 
-      await BackToMenu.sendReturnToMainMenu(message.from)
-
+      if (
+        state?.step === 'payment_info_sent' &&
+        !messageWelcome.isGreeting(message)
+      ) {
+        await whatsappService.sendMessage(
+          message.from,
+          'Recibimos tu interés. En breve nos pondremos en contacto para completar la inscripción.'
+        )
+        await whatsappService.markAsRead(message.id)
+        stateService.clearState(message.from)
+        return
+      } else {
+        await BackToMenu.sendReturnToMainMenu(message.from)
+      }
       // await whatsappService.markAsRead(message.id)
       return
     } else if (message?.type === 'interactive') {
@@ -119,7 +109,7 @@ class MessageHandler {
 
       if (buttonId === 'go_menu') {
         stateService.clearState(message.from)
-        await messageWelcome.sendWelcomeMessage(message.from)
+        // await messageWelcome.sendWelcomeMessage(message.from)
         await messageWelcome.sendMenuModality(message.from)
         await whatsappService.markAsRead(message.id)
         return

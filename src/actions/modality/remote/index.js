@@ -4,7 +4,7 @@ import stateService from '#handleBotState/index.js'
 class CoursesListRemote {
   async sendCoursesListRemote(to) {
     const response = `
-        *Estos son nuestros programas técnicos en modalidad presencial.*\nPor favor, escribe el número del programa de tu interés para recibir más información:\n
+        *Estos son nuestros programas técnicos en modalidad virtual.*\nPor favor, escribe el número del programa de tu interés para recibir más información:\n
         1. Técnico en asistente administrativo
         2. Técnico en seguridad y salud en el trabajo
         3. Técnico en gestión documental y archivo

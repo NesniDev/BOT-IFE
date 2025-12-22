@@ -30,7 +30,7 @@ class MessageWelcome {
   }
 
   async sendMenuModality(to) {
-    const response = `¿En qué modalidad deseas estudiar?\n1. Modalidad Presencial\n2. Modalidad Virtual`
+    const response = `*¿En qué modalidad deseas estudiar?*\nPor favor, selecciona el número de la opción que más te interese:\n\n1. Modalidad Presencial\n2. Modalidad Virtual`
 
     await whatsappServices.sendMessage(to, response)
 

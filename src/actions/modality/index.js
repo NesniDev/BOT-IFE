@@ -17,7 +17,7 @@ class OptionSelectedModality {
         default:
           await whatsappService.sendMessage(
             to,
-            'Saluda a nuestro bot de whatsapp, no has elegido ninguna opción'
+            'Opción no válida. Selecciona un número del menú.'
           )
           stateService.clearState(to)
           break

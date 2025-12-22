@@ -4,7 +4,7 @@ class BackToMenu {
   async sendReturnToMainMenu(to) {
     try {
       const textButton =
-        'Ups, no logré entenderte. Puedes volver al menú principal aquí 👇.'
+        'Ups, no logré entenderte. Puedes ir al menú principal aquí 👇.'
       const buttons = [
         {
           type: 'reply',
