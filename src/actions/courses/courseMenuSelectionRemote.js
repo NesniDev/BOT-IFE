@@ -1,5 +1,5 @@
 import whatsappServices from '#services/whatsappServices.js'
-import TemplateCourse from '#actions/courses/inOffice/template.js'
+import TemplateCourse from '#actions/courses/remote/template.js'
 import stateService from '#handleBotState/index.js'
 import coursesList from '#utils/remote.js'
 
