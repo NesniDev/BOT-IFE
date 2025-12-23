@@ -116,7 +116,7 @@ class MessageHandler {
 
       if (buttonId === 'go_menu') {
         stateService.clearState(message.from)
-        // await messageWelcome.sendWelcomeMessage(message.from)
+        await messageWelcome.sendWelcomeMessage(message.from, senderInfo)
         await messageWelcome.sendMenuModality(message.from)
         await whatsappService.markAsRead(message.id)
         return

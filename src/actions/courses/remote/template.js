@@ -34,9 +34,13 @@ class TemplateCourse {
   async sendInformation(to, course) {
     const response = `A continuación, te brindaré toda la información relacionada con el *${course.title}* en modalidad virtual.
 
-Una vez revises la información, si deseas iniciar tu proceso de inscripción, por favor envía un mensaje con el texto: *Quiero inscribirme*
+Una vez revises la información, si deseas iniciar tu proceso de inscripción, por favor envía un mensaje con el texto: 
 
-Si no deseas inscribirte, por favor envía un mensaje con el texto: *Finalizar chat*
+- *Quiero inscribirme*
+
+Si no deseas inscribirte, por favor envía un mensaje con el texto: 
+
+- *Finalizar chat*
       `
     await whatsappServices.sendMessage(to, response)
   }
