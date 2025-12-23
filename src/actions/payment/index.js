@@ -4,9 +4,12 @@ import stateService from '#handleBotState/index.js'
 class PaymentInformation {
   async sendPaymentInformation(to, course) {
     try {
-      const response = `Me agrada que te interese el curso de ${course}. 
+      const response = `¡Hola! Me alegra saber que te interesa el curso de *${course}*.
 
-Si quieres contacto con un asesor, por favor envía un mensaje al siguiente enlace:  wa.link/cv1xp7`
+Para continuar con tu inscripción, sigue estos pasos:
+
+1. Realiza el pago a la siguiente cuenta: 0-124250-00-0-0
+2. Después de realizar el pago, por favor envía una captura del mismo al siguiente número de contacto. Allí recibirás la confirmación y podrás continuar con tu inscripción 👇`
 
       await whatsappServices.sendMessage(to, response)
       stateService.setState(to, {
