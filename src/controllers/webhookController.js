@@ -4,10 +4,11 @@ import messageHandler from '#services/messageHandler.js'
 class WebhookController {
   async handleIncoming(req, res) {
     const message = req.body.entry?.[0]?.changes[0]?.value?.messages?.[0]
+    const senderInfo = req.body.entry?.[0]?.changes[0]?.value?.contacts?.[0]
 
     console.log(JSON.stringify(req.body, null, 2))
     if (message) {
-      await messageHandler.handleIncomingMessage(message)
+      await messageHandler.handleIncomingMessage(message, senderInfo)
     }
     res.sendStatus(200)
   }

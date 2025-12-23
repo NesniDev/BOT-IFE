@@ -24,8 +24,19 @@ class MessageWelcome {
     return greetings.includes(message)
   }
 
-  async sendWelcomeMessage(to) {
-    const response = `Hola, soy Ana Lucía, tu asistente virtual del Instituto IFE Colombia.\n\nEstoy aquí para brindarte información sobre nuestros programas técnicos, modalidades de estudio y proceso de matrícula.`
+  async sendWelcomeMessage(to, senderInfo) {
+    const nameUser =
+      senderInfo.profile.name.split(' ')[0].trim() || senderInfo.wa_id
+
+    const deleteEmojis = /[^a-zA-Z\s]/g
+
+    // Función para limpiar el nombre
+    const cleanName = (name) => {
+      return name.replace(deleteEmojis, '').trim()
+    }
+    const response = `Hola ${cleanName(
+      nameUser
+    )}, soy Ana Lucía, tu asistente virtual del Instituto IFE Colombia.\n\nEstoy aquí para brindarte información sobre nuestros programas técnicos, modalidades de estudio y proceso de matrícula.`
     await whatsappServices.sendMessage(to, response)
   }
 

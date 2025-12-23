@@ -2,9 +2,20 @@ import whatsappServices from '#services/whatsappServices.js'
 import stateService from '#handleBotState/index.js'
 
 class PaymentInformation {
-  async sendPaymentInformation(to, course) {
+  async sendPaymentInformation(to, course, senderInfo) {
+    const nameUser =
+      senderInfo.profile.name.split(' ')[0].trim() || senderInfo.wa_id
+
+    const deleteEmojis = /[^a-zA-Z\s]/g
+
+    // Función para limpiar el nombre
+    const cleanName = (name) => {
+      return name.replace(deleteEmojis, '').trim()
+    }
     try {
-      const response = `¡Hola! Me alegra saber que te interesa el curso de *${course}*.
+      const response = `${cleanName(
+        nameUser
+      )}! Me alegra saber que te interesa el curso de *${course}*.
 
 Para continuar con tu inscripción, sigue estos pasos:
 
