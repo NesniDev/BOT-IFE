@@ -2,15 +2,8 @@ import whatsappServices from '#services/whatsappServices.js'
 
 class FinalInfo {
   async sendFinalInfo(to) {
-    const response = `Por ultimo puedes seleccionar las siguientess opciones:`
+    const response = `Por último, elige una de las siguientes opciones:`
     const buttons = [
-      {
-        type: 'reply',
-        reply: {
-          id: 'go_menu',
-          title: 'Ir al inicio'
-        }
-      },
       {
         type: 'reply',
         reply: {

@@ -21,7 +21,7 @@ class MessageHandler {
       if (state?.step === 'menu_modality') {
         await OptionSelectedModality.optionSelected(
           message.from,
-          message.text.body.toLowerCase().trim(), //incomingMessage
+          message.text.body.toLowerCase().trim(),
           message.id
         )
         await whatsappService.markAsRead(message.id)
@@ -30,7 +30,7 @@ class MessageHandler {
       if (state?.step === 'menu_programs_in_office') {
         await courseMenuSelection.sendCourseMenuSelectionInOffice(
           message.from,
-          message.text.body.toLowerCase().trim(), //incomingMessage
+          message.text.body.toLowerCase().trim(),
           message.id
         )
         return
@@ -39,7 +39,7 @@ class MessageHandler {
       if (state?.step === 'menu_programs_remote') {
         await courseMenuSelectionRemote.sendCourseMenuSelectionRemote(
           message.from,
-          message.text.body.toLowerCase().trim(), //incomingMessage
+          message.text.body.toLowerCase().trim(),
           message.id
         )
         return
@@ -109,7 +109,7 @@ class MessageHandler {
       } else {
         await BackToMenu.sendReturnToMainMenu(message.from)
       }
-      // await whatsappService.markAsRead(message.id)
+
       return
     } else if (message?.type === 'interactive') {
       const buttonId = message.interactive.button_reply?.id
@@ -122,10 +122,14 @@ class MessageHandler {
         return
       }
       if (buttonId === 'go_location') {
-        await Contacts.sendContacts(message.from)
+        await whatsappService.sendLocation(message.from)
+        await whatsappService.sendMessage(
+          message.from,
+          '¡Gracias por usar nuestro bot de WhatsApp! 🤩 ¡Te esperamos pronto en la sede!'
+        )
+        await whatsappService.markAsRead(message.id)
         stateService.clearState(message.from)
 
-        await whatsappService.markAsRead(message.id)
         return
       }
       if (buttonId === 'finish_chat') {
