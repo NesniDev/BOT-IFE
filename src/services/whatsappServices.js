@@ -120,6 +120,39 @@ class WhatsAppService {
     }
     await sendToWhatsapp(data)
   }
+  // async sendButtonLink(to) {
+  //   const data = {
+  //     messaging_product: 'whatsapp',
+  //     recipient_type: 'individual',
+  //     to,
+  //     type: 'interactive',
+  //     interactive: {
+  //       type: 'cta_url',
+  //       header: {
+  //         type: 'image',
+  //         image: {
+  //           link: 'https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg'
+  //         }
+  //       },
+
+  //       body: {
+  //         text: 'Hola soy yo'
+  //       },
+  //       action: {
+  //         name: 'cta_url',
+  //         parameters: {
+  //           display_text: 'clic aqui',
+  //           url: 'https://www.ifecolombia.edu.co/'
+  //         }
+  //       },
+
+  //       footer: {
+  //         text: 'Gracias por acceder al enlace'
+  //       }
+  //     }
+  //   }
+  //   await sendToWhatsapp(data)
+  // }
 }
 
 export default new WhatsAppService()
