@@ -13,7 +13,7 @@ import TemplateCourse from '#actions/courses/inOffice/template.js'
 
 class MessageHandler {
   constructor() {}
-  async handleIncomingMessage(message) {
+  async handleIncomingMessage(message, senderInfo) {
     if (message?.type === 'text') {
       const state = stateService.getState(message.from)
       const incomingMessage = message?.text?.body?.toLowerCase().trim() || ''
@@ -47,9 +47,11 @@ class MessageHandler {
 
       if (state?.step === 'waiting_quiero_inscribirme') {
         if (incomingMessage === 'quiero inscribirme') {
+          await whatsappService.sendReaction(message.from, message.id, '❤️')
           await PaymentInformation.sendPaymentInformation(
             message.from,
-            state.course
+            state.course,
+            senderInfo
           )
           await Contacts.sendContacts(message.from)
           await FinalInfo.sendFinalInfo(message.from)
@@ -87,7 +89,7 @@ class MessageHandler {
       if (messageWelcome.isGreeting(incomingMessage)) {
         await whatsappService.sendReaction(message.from, message.id, '🤖')
         await TemplateCourse.sendStickerLogo(message.from)
-        await messageWelcome.sendWelcomeMessage(message.from)
+        await messageWelcome.sendWelcomeMessage(message.from, senderInfo)
         await messageWelcome.sendMenuModality(message.from)
         await whatsappService.markAsRead(message.id)
         return
