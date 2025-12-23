@@ -8,6 +8,8 @@ import courseMenuSelectionRemote from '#actions/courses/courseMenuSelectionRemot
 import BackToMenu from '#actions/backMenu/backToMenu.js'
 import PaymentInformation from '#actions/payment/index.js'
 import Contacts from '#actions/contacts/index.js'
+import FinalInfo from '#actions/buttons/finalInfo.js'
+import TemplateCourse from '#actions/courses/inOffice/template.js'
 
 class MessageHandler {
   constructor() {}
@@ -50,6 +52,7 @@ class MessageHandler {
             state.course
           )
           await Contacts.sendContacts(message.from)
+          await FinalInfo.sendFinalInfo(message.from)
 
           stateService.setState(message.from, {
             step: 'payment_info_sent',
@@ -63,7 +66,7 @@ class MessageHandler {
         if (incomingMessage === 'finalizar chat') {
           await whatsappService.sendMessage(
             message.from,
-            'Gracias por usar nuestro bot de WhatsApp. ¡Te esperamos pronto!'
+            '¡Gracias por usar nuestro bot de WhatsApp! 🤩 ¡Te esperamos pronto!'
           )
 
           stateService.clearState(message.from)
@@ -82,6 +85,8 @@ class MessageHandler {
       }
 
       if (messageWelcome.isGreeting(incomingMessage)) {
+        await whatsappService.sendReaction(message.from, message.id, '🤖')
+        await TemplateCourse.sendStickerLogo(message.from)
         await messageWelcome.sendWelcomeMessage(message.from)
         await messageWelcome.sendMenuModality(message.from)
         await whatsappService.markAsRead(message.id)
@@ -112,6 +117,22 @@ class MessageHandler {
         // await messageWelcome.sendWelcomeMessage(message.from)
         await messageWelcome.sendMenuModality(message.from)
         await whatsappService.markAsRead(message.id)
+        return
+      }
+      if (buttonId === 'go_location') {
+        await Contacts.sendContacts(message.from)
+        stateService.clearState(message.from)
+
+        await whatsappService.markAsRead(message.id)
+        return
+      }
+      if (buttonId === 'finish_chat') {
+        await whatsappService.sendMessage(
+          message.from,
+          '¡Gracias por usar nuestro bot de WhatsApp! 🤩 ¡Haz finalizado el chat, vuelve pronto!'
+        )
+        await whatsappService.markAsRead(message.id)
+        stateService.clearState(message.from)
         return
       }
     }

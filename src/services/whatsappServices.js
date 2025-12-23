@@ -17,7 +17,7 @@ class WhatsAppService {
     await sendToWhatsapp(data)
   }
 
-  async sendMediaMessage(to, type, mediaUrl, caption) {
+  async sendMediaMessage(to, type, mediaUrl, caption, messageId) {
     const mediaObject = {}
 
     switch (type) {
@@ -38,6 +38,12 @@ class WhatsAppService {
           caption: caption
         }
         break
+      case 'sticker':
+        mediaObject.sticker = {
+          link: mediaUrl
+        }
+        break
+
       default:
         throw new Error('Invalid media type')
     }
@@ -84,6 +90,19 @@ class WhatsAppService {
       messaging_product: 'whatsapp',
       status: 'read',
       message_id: messageId
+    }
+    await sendToWhatsapp(data)
+  }
+
+  async sendReaction(to, messageId, emoji) {
+    const data = {
+      messaging_product: 'whatsapp',
+      to,
+      type: 'reaction',
+      reaction: {
+        message_id: messageId,
+        emoji: emoji
+      }
     }
     await sendToWhatsapp(data)
   }

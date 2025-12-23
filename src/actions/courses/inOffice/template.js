@@ -40,6 +40,12 @@ class TemplateCourse {
 
     await whatsappServices.sendMediaMessage(to, 'audio', audioUrl)
   }
+  async sendStickerLogo(to, course) {
+    const audioUrl =
+      'https://drive.google.com/uc?export=download&id=1CNWeMRUpncuIzIjeI1Q4SD4KtqJCib2x'
+
+    await whatsappServices.sendMediaMessage(to, 'sticker', audioUrl)
+  }
 
   async sendInformation(to, course) {
     const response = `A continuación, te brindaré toda la información relacionada con el *${course.title}*.

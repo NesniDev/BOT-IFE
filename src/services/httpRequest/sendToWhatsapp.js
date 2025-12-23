@@ -16,7 +16,10 @@ const sendToWhatsapp = async (data) => {
     })
     return response.data
   } catch (error) {
-    console.error('Error sending message to WhatsApp:', error)
+    console.error(
+      'Error sending message to WhatsApp:',
+      error?.response?.data || error.message
+    )
   }
 }
 
