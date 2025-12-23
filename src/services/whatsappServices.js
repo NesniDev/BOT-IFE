@@ -106,6 +106,20 @@ class WhatsAppService {
     }
     await sendToWhatsapp(data)
   }
+  async sendLocation(to) {
+    const data = {
+      messaging_product: 'whatsapp',
+      to,
+      type: 'location',
+      location: {
+        latitude: '5.61690700',
+        longitude: '-73.81652100',
+        name: 'Ife Colombia - Chiquinquirá',
+        address: 'Carrera 7 # 14B 25, Chiquinquirá, Boyacá'
+      }
+    }
+    await sendToWhatsapp(data)
+  }
 }
 
 export default new WhatsAppService()
